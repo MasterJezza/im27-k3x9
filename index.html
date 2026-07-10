@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carl — Ironman Kalmar 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,800;125,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --djup:#0E2A38;        /* Östersjö-mörkblå */
+  --hav:#16455C;         /* panelblå */
+  --is:#EDF2F4;          /* kall nordisk bakgrund */
+  --dis:#DCE6EA;         /* ljus panel */
+  --linje:#B9C9D0;       /* hårlinjer */
+  --text:#152730;
+  --textsvag:#5A707B;
+  --bib:#F04E23;         /* startnummer-orange, används sparsamt */
+  --tall:#2E6E54;        /* tallgrön = OK */
+  --z1:#8FB8CC; --z2:#3E8E7E; --z3:#E3B23C; --z4:#D95D39; --z5:#A62639;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --disp:'Archivo',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--is);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.55}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:50;background:var(--djup);color:#fff}
+nav .wrap{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:0 20px}
+nav a{color:#B8CCD6;text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:14px 12px;white-space:nowrap;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:#fff;border-bottom-color:var(--bib);outline:none}
+nav .brand{font-family:var(--disp);font-weight:900;font-stretch:125%;color:#fff;font-size:13px;padding-right:18px;letter-spacing:.04em}
+
+section{padding:56px 0;border-bottom:1px solid var(--linje)}
+section:last-of-type{border-bottom:none}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bib);font-weight:600;margin-bottom:10px}
+h2{font-family:var(--disp);font-weight:800;font-stretch:125%;font-size:clamp(24px,3.4vw,34px);line-height:1.1;text-transform:uppercase;letter-spacing:.01em;margin-bottom:22px}
+h3{font-family:var(--sans);font-weight:600;font-size:17px;margin:26px 0 10px}
+p.lede{max-width:64ch;color:var(--textsvag)}
+
+/* ---------- hero ---------- */
+header.hero{background:var(--djup);color:#fff;padding:64px 0 54px}
+.hero .eyebrow{color:#7FB3C8}
+.hero h1{font-family:var(--disp);font-weight:900;font-stretch:125%;font-size:clamp(38px,7vw,72px);line-height:.95;text-transform:uppercase;letter-spacing:.005em}
+.hero h1 .thin{color:#5E8299}
+.countrow{display:flex;flex-wrap:wrap;gap:34px;margin-top:34px;align-items:baseline}
+.count{font-family:var(--mono)}
+.count b{display:block;font-size:clamp(30px,4.5vw,44px);font-weight:600;color:#fff;line-height:1}
+.count span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7FA3B5}
+.count.accent b{color:var(--bib)}
+.hero .meta{margin-top:26px;font-family:var(--mono);font-size:13px;color:#7FA3B5}
+.hero .meta b{color:#D7E4EA;font-weight:500}
+
+/* ---------- signature: fas-spåret ---------- */
+.track-block{margin-top:40px}
+.track-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7FA3B5;margin-bottom:10px;display:flex;justify-content:space-between}
+.track{position:relative;display:flex;height:54px;border:1px solid #2C516A;background:#10344A}
+.track .ph{position:relative;height:100%;display:flex;align-items:flex-end;padding:6px 8px;border-right:1px solid #2C516A;overflow:hidden}
+.track .ph:last-child{border-right:none}
+.track .ph .nm{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9FBECD;white-space:nowrap}
+.track .ph .fill{position:absolute;inset:0;width:0;background:linear-gradient(90deg,#1E5D74,#2E7D8A)}
+.track .ph .nm{position:relative;z-index:2}
+.track .ph.race{background:var(--bib)}
+.track .ph.race .nm{color:#fff;font-weight:600}
+.marker{position:absolute;top:-14px;bottom:-14px;width:2px;background:var(--bib);z-index:5}
+.marker::after{content:"DU ÄR HÄR";position:absolute;top:-4px;left:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--bib);font-weight:600;white-space:nowrap}
+.track-sub{display:flex;margin-top:8px}
+.track-sub div{font-family:var(--mono);font-size:10px;color:#5E8299;padding:0 8px;border-right:1px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- status cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--linje);padding:18px 18px 16px;position:relative}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tall)}
+.card.warn::before{background:var(--z3)}
+.card.stop::before{background:var(--bib)}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--tall)}
+.card.warn .tag{color:#A87E1B}
+.card.stop .tag{color:var(--bib)}
+.card h4{font-size:15px;font-weight:600;margin:6px 0 6px}
+.card p{font-size:13.5px;color:var(--textsvag)}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--linje);font-size:14px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:left;background:var(--djup);color:#CBDCE4;padding:10px 12px;font-weight:500}
+td{padding:10px 12px;border-top:1px solid var(--dis);vertical-align:top}
+tr:nth-child(even) td{background:#F6F9FA}
+td.mono,.mono{font-family:var(--mono);font-size:13px}
+.zdot{display:inline-block;width:10px;height:10px;margin-right:7px;vertical-align:baseline}
+.z1 .zdot{background:var(--z1)}.z2 .zdot{background:var(--z2)}.z3 .zdot{background:var(--z3)}.z4 .zdot{background:var(--z4)}.z5 .zdot{background:var(--z5)}
+tr.now td{background:#FDF0EB!important;border-left:3px solid var(--bib)}
+.pill{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border:1px solid currentColor}
+.pill.ok{color:var(--tall)} .pill.pend{color:#A87E1B} .pill.now{color:var(--bib);font-weight:600}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:26px}
+.stat{background:#fff;border:1px solid var(--linje);padding:16px}
+.stat b{display:block;font-family:var(--mono);font-size:26px;font-weight:600;line-height:1.1}
+.stat span{font-size:12px;color:var(--textsvag)}
+.stat small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--tall);margin-top:4px;letter-spacing:.04em}
+
+/* ---------- nutrition ---------- */
+.fuel{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.fuel .f{background:#fff;border:1px solid var(--linje);padding:18px}
+.fuel .f .dur{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--bib);font-weight:600}
+.fuel .f h4{font-size:15px;margin:6px 0 8px}
+.fuel .f ul{list-style:none}
+.fuel .f li{font-size:13.5px;color:var(--textsvag);padding:4px 0 4px 16px;position:relative}
+.fuel .f li::before{content:"—";position:absolute;left:0;color:var(--linje)}
+
+/* ---------- log ---------- */
+.log{background:#fff;border:1px solid var(--linje)}
+.log .entry{padding:18px;border-top:1px solid var(--dis)}
+.log .entry:first-child{border-top:none}
+.log .d{font-family:var(--mono);font-size:12px;color:var(--bib);letter-spacing:.06em;font-weight:600}
+.log h4{font-size:15px;margin:4px 0 6px}
+.log p{font-size:13.5px;color:var(--textsvag);max-width:75ch}
+
+.note{font-family:var(--mono);font-size:12px;color:var(--textsvag);margin-top:14px}
+footer{background:var(--djup);color:#7FA3B5;padding:28px 0;font-family:var(--mono);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media(max-width:640px){
+  .track .ph .nm{font-size:8.5px}
+  .marker::after{display:none}
+  section{padding:40px 0}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Sektioner">
+  <div class="wrap">
+    <span class="brand">CW·IM27</span>
+    <a href="#laget">Läget</a>
+    <a href="#baslinjer">Baslinjer</a>
+    <a href="#vecka">Veckoschema</a>
+    <a href="#faser">Faser</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#logg">Datalogg</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Träningsprotokoll · Carl Weitze</div>
+    <h1>Ironman<br>Kalmar <span class="thin">2027</span></h1>
+    <div class="countrow">
+      <div class="count accent"><b id="veckor">–</b><span>veckor kvar</span></div>
+      <div class="count"><b id="dagar">–</b><span>dagar kvar</span></div>
+      <div class="count"><b id="fasnamn">–</b><span>nuvarande fas</span></div>
+    </div>
+    <div class="meta">Mål: <b>3,86 km sim · 180 km cykel · 42,2 km löp</b> &nbsp;·&nbsp; prel. lördag <b>14 aug 2027</b> &nbsp;·&nbsp; riktmärke <b>11:30–12:30</b></div>
+
+    <div class="track-block">
+      <div class="track-label"><span>Maj 2026</span><span>67 veckor · fem faser</span><span>Aug 2027</span></div>
+      <div class="track" id="track">
+        <div class="ph" style="flex:8" data-start="2026-05-18" data-end="2026-07-12" data-nm="Fas 0 · Uppstart"><div class="fill"></div><span class="nm">0 Uppstart</span></div>
+        <div class="ph" style="flex:16" data-start="2026-07-13" data-end="2026-11-01" data-nm="Fas 1 · Bas 1"><div class="fill"></div><span class="nm">1 Bas 1</span></div>
+        <div class="ph" style="flex:16" data-start="2026-11-02" data-end="2027-02-21" data-nm="Fas 2 · Bas 2"><div class="fill"></div><span class="nm">2 Bas 2</span></div>
+        <div class="ph" style="flex:14" data-start="2027-02-22" data-end="2027-05-30" data-nm="Fas 3 · Specifik"><div class="fill"></div><span class="nm">3 Specifik</span></div>
+        <div class="ph" style="flex:8" data-start="2027-05-31" data-end="2027-08-13" data-nm="Fas 4 · Topp & taper"><div class="fill"></div><span class="nm">4 Topp</span></div>
+        <div class="ph race" style="flex:1.4" data-start="2027-08-14" data-end="2027-08-14" data-nm="Race"><span class="nm">★</span></div>
+        <div class="marker" id="marker" hidden></div>
+      </div>
+      <div class="track-sub">
+        <div style="flex:8">8 v</div><div style="flex:16">16 v</div><div style="flex:16">16 v</div><div style="flex:14">14 v</div><div style="flex:8">8 v</div><div style="flex:1.4"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ LÄGET NU ============ -->
+<section id="laget">
+  <div class="eyebrow">Uppdaterad 10 juli 2026 · efter API-synk (19 pass)</div>
+  <h2>Läget nu</h2>
+  <p class="lede">Coachens aktuella bedömning. Grönt = fortsätt. Gult = justera. Orange = åtgärd krävs innan nästa datauppladdning.</p>
+  <h3>&nbsp;</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">OK</span>
+      <h4>Cykelintensiteten under kontroll</h4>
+      <p>Vändningen syns i datan: 28 jun 156 bpm snitt → 9 jul <b>135 bpm</b> på samma loop, bara 1–2 km/h långsammare. Håll disciplinen: 130–145, ingen slutspurt på Z2-dagar.</p>
+    </div>
+    <div class="card warn">
+      <span class="tag">Pågår</span>
+      <h4>Löpåterstarten: 1 av 2 pass</h4>
+      <p>8 jul: 5,3 km, snitt 137, 88 % Z2 — perfekt utförd. Golvet står kvar: <b>2 löppass/vecka</b> (30 + 40 min). Pass 2 är söndagens 40 min.</p>
+    </div>
+    <div class="card">
+      <span class="tag">OK</span>
+      <h4>Polar H10 i bruk</h4>
+      <p>Parkopplad H10 → Watch → Strava, verifierad 8–9 jul. Ny mätbaslinje satt: <b>20 km-loopen @ 26,8 km/h på puls 135</b>. Fukta elektroderna före varje pass.</p>
+    </div>
+    <div class="card">
+      <span class="tag">OK</span>
+      <h4>Knä återställt</h4>
+      <p>Ingen kvarvarande smärta efter halvmaran 17 maj. Fortsätt med knästabilitet i styrkepassen som skydd inför höstens volymökning.</p>
+    </div>
+    <div class="card">
+      <span class="tag">OK</span>
+      <h4>Vikt 73 kg — sund utveckling</h4>
+      <p>Ca 4 kg ned sedan årsskiftet i naturlig takt. Racevikten är i praktiken redan på plats. Väg max 1×/vecka, ät under pass över 90 min.</p>
+    </div>
+    <div class="card warn">
+      <span class="tag">Nästa</span>
+      <h4>Långpassprogressionen startar</h4>
+      <p>Lördag 11 jul: <b>90 min cykel, pulstak 145.</b> Vätska + ät från minut 30 — magträningens dag ett. Progression: 90 min → 1:45 → 2:15 → 2:45 (mitten av aug).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BASLINJER ============ -->
+<section id="baslinjer">
+  <div class="eyebrow">Fysiologi · zoner · utrustning</div>
+  <h2>Baslinjer</h2>
+
+  <div class="stats">
+    <div class="stat"><b>73<span style="font-size:14px"> kg</span></b><span>Vikt (175 cm)</span><small>▼ från 77 vid årsskiftet</small></div>
+    <div class="stat"><b>~43</b><span>VO₂ max</span><small>Mål race: 50–55</small></div>
+    <div class="stat"><b>49–54</b><span>Vilopuls</span><small>Stabil baslinje</small></div>
+    <div class="stat"><b>~88<span style="font-size:14px"> ms</span></b><span>HRV (SDNN)</span><small>God marginal</small></div>
+    <div class="stat"><b>195</b><span>Maxpuls</span><small>Observerad</small></div>
+  </div>
+
+  <h3>Pulszoner — samma i Bevel, Strava och alla samtal</h3>
+  <table>
+    <thead><tr><th>Zon</th><th>Puls</th><th>Syfte</th><th>Andel av träningstid</th></tr></thead>
+    <tbody>
+      <tr class="z1"><td><span class="zdot"></span><b>Z1</b> Återhämtning</td><td class="mono">110–130</td><td>Aktiv vila, promenader</td><td class="mono">~10 %</td></tr>
+      <tr class="z2"><td><span class="zdot"></span><b>Z2</b> Aerob bas</td><td class="mono">130–150</td><td>Motorn. Här sker basbygget — cykel 130–145</td><td class="mono">~70 %</td></tr>
+      <tr class="z3"><td><span class="zdot"></span><b>Z3</b> Tempo</td><td class="mono">150–165</td><td>"Döda zonen" — undviks utom planerat</td><td class="mono">3–5 %</td></tr>
+      <tr class="z4"><td><span class="zdot"></span><b>Z4</b> Tröskel</td><td class="mono">165–178</td><td>Norska metodens kärna — kontrollerade block</td><td class="mono">12–15 %</td></tr>
+      <tr class="z5"><td><span class="zdot"></span><b>Z5</b> VO₂max</td><td class="mono">178–195</td><td>Mycket sparsamt — IM kräver det inte</td><td class="mono">0–2 %</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Utrustning</h3>
+  <table>
+    <thead><tr><th>Utrustning</th><th>Detalj</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Cykel "CED"</td><td>Canyon Endurace Allroad · uppgraderas med tri-bars, tri-sadel, pedaler</td><td><span class="pill ok">I bruk</span></td></tr>
+      <tr><td>Pulsband</td><td>Polar H10 · H10 → Watch → Strava verifierad 8–9 jul</td><td><span class="pill ok">I bruk</span></td></tr>
+      <tr><td>Klocka</td><td>Apple Watch · handledspuls opålitlig på cykel</td><td><span class="pill ok">I bruk</span></td></tr>
+      <tr><td>Wattmätare + cykeldator</td><td>Planerad våren 2027 — inte nödvändig ännu</td><td><span class="pill pend">Senare</span></td></tr>
+      <tr><td>Indoor-trainer</td><td>Krävs inför Bas 2 (november). Begagnad Kickr Core/Flux räcker</td><td><span class="pill pend">Inför nov</span></td></tr>
+      <tr><td>Våtdräkt</td><td>Inför öppet vatten-simning våren 2027</td><td><span class="pill pend">Inför 2027</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ VECKOSCHEMA ============ -->
+<section id="vecka">
+  <div class="eyebrow">Gäller juli 2026 · Fogdön-blocket</div>
+  <h2>Veckoschema</h2>
+  <p class="lede">Cykeltungt block med löpgolv. Lördagens långpass är veckans viktigaste byggsten och växer stegvis: 90 min → 1:45 → 2:15 → 2:45 fram till mitten av augusti.</p>
+  <h3>&nbsp;</h3>
+  <table>
+    <thead><tr><th style="width:90px">Dag</th><th>Pass</th><th>Innehåll</th></tr></thead>
+    <tbody>
+      <tr><td><b>Mån</b></td><td>Vila / promenad</td><td>30–45 min lugnt. Mobility vid behov.</td></tr>
+      <tr><td><b>Tis</b></td><td>Cykel 45–60 min</td><td class="mono">Puls 130–145. 20 km-loopen i lugnt tempo — farten är oviktig.</td></tr>
+      <tr><td><b>Ons</b></td><td>Löpning 30 min</td><td class="mono">Z2, under 150. Återstart — promenadpauser tillåtna.</td></tr>
+      <tr><td><b>Tor</b></td><td>Cykel 60 min</td><td class="mono">Z2. Utforska nya vägar på Fogdön/Selaön, håll pulsen nere.</td></tr>
+      <tr><td><b>Fre</b></td><td>Vila / styrka 45 min</td><td>Knästabilitet (enbensknäböj, utfall, step-ups), höft, bål.</td></tr>
+      <tr><td><b>Lör</b></td><td><b>Lång cykel</b></td><td class="mono">Z2 hela vägen, pulstak 145. Vecka för vecka: 90 min → 2:45. Ät från minut 30: 40–60 g kolhydrat/h.</td></tr>
+      <tr><td><b>Sön</b></td><td>Löpning 40 min + Mälaren-dopp</td><td class="mono">Z2 under 150. Efteråt 10–15 min vattenvana i Mälaren — inte träning, bara vana.</td></tr>
+    </tbody>
+  </table>
+  <p class="note">≈ 6–8 h/vecka nu · växer mot 9–10 h i augusti. Var fjärde vecka: återhämtningsvecka på ~60 % volym.</p>
+</section>
+
+<!-- ============ FASER ============ -->
+<section id="faser">
+  <div class="eyebrow">Periodisering · 67 veckor</div>
+  <h2>Faserna</h2>
+  <table>
+    <thead><tr><th>Fas</th><th>Period</th><th>Volym</th><th>Fokus & milstolpar</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>0 · Uppstart</b></td><td class="mono">maj–jul 2026</td><td class="mono">6–9 h</td>
+        <td>Cykel + löpbas (sim senarelagd på Carls beslut). Cykel ✓ · H10 ✓ · Vattenvana i Mälaren varje söndag.</td>
+      </tr>
+      <tr class="now">
+        <td><b>1 · Bas 1</b> <span class="pill now">Nu</span></td><td class="mono">jul–okt 2026</td><td class="mono">9–13 h</td>
+        <td>Aerob bas på Fogdön. <b>Sep: simstart med privatcoach 2×/v.</b> Milstolpar: lång cykel 2:45 (aug) · simma 1 500 m (okt) · 21 km lugn löpning utan pauser (okt) · första tröskelpassen på cykel (aug).</td>
+      </tr>
+      <tr>
+        <td><b>2 · Bas 2</b></td><td class="mono">nov 2026–feb 2027</td><td class="mono">11–15 h</td>
+        <td>Indoor-vintern. Sim 4×/v — accelererad progression mot 3 000 m (feb). Tröskelblocken växer: cykel 5×10 min, löp 6×8 min. Lång löpning 26 km (feb). Tröskeltest var 4:e vecka.</td>
+      </tr>
+      <tr>
+        <td><b>3 · Specifik</b></td><td class="mono">mar–jun 2027</td><td class="mono">13–17 h</td>
+        <td>Dubbeltröskel introduceras. Brick varje vecka. Tävlingstempo-block på långpassen. Magträning 60–90 g/h. <b>Stresstest (överenskommet):</b> lokal halvdistans <i>eller</i> egen träningsdag med öppet vatten-sim + växlingar. IM-simulering över en helg i juni.</td>
+      </tr>
+      <tr>
+        <td><b>4 · Topp & taper</b></td><td class="mono">jul–aug 2027</td><td class="mono">16–18 → 3 h</td>
+        <td>Peak-vecka 18 h (v −6) → stegvis taper. Volym ned, intensitet kvar kort & skarp. Resa till Kalmar onsdag före race.</td>
+      </tr>
+      <tr>
+        <td><b>★ Race</b></td><td class="mono">prel. 14 aug 2027</td><td class="mono">—</td>
+        <td class="mono">Sim 80–85 min lugnt · Cykel Z2 130–145, aldrig >155, 90 g kolh/h · Löp: första 5 km medvetet långsamt.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Simstarten i september ger 52 veckor för simbenet — genomförbart men utan marginal för hoppade pass. Progression: 500 m (v 4) → 1 500 m (v 10) → 3 000 m (v 20) → tävlingsfärdig 3 860 m+ (v 40).</p>
+</section>
+
+<!-- ============ NUTRITION ============ -->
+<section id="nutrition">
+  <div class="eyebrow">Bränsle · magträning · vardag</div>
+  <h2>Nutrition</h2>
+  <p class="lede">Magen är ett organ som tränas precis som benen. Halvmaran 17 maj kördes på ~12 g kolhydrat/h — race day kräver 90. Gapet stängs på sommarens och höstens långpass, inte på tävlingsdagen.</p>
+  <h3>Under pass</h3>
+  <div class="fuel">
+    <div class="f">
+      <span class="dur">&lt; 75 min</span>
+      <h4>Bara vätska</h4>
+      <ul><li>Vatten räcker</li><li>Varmt väder: elektrolyter i flaskan</li><li>Inget behov av energi</li></ul>
+    </div>
+    <div class="f">
+      <span class="dur">75 min – 2 h</span>
+      <h4>Börja äta</h4>
+      <ul><li>40–60 g kolhydrat/h från minut 30</li><li>Banan, bulle eller sportdryck — enkelt är rätt</li><li>500–700 ml vätska/h efter värme</li></ul>
+    </div>
+    <div class="f">
+      <span class="dur">&gt; 2 h · långpass</span>
+      <h4>Magträning</h4>
+      <ul><li>Trappa mot 60–90 g/h under hösten</li><li>Testa gels/sportdryck du tänker tävla på</li><li>Logga vad magen sa efteråt — det är data</li></ul>
+    </div>
+    <div class="f">
+      <span class="dur">Race day 2027</span>
+      <h4>Målbild</h4>
+      <ul><li>Cykel: 90 g kolh/h från minut 20 · 700 ml/h</li><li>Löpning: 60 g/h, gels + bandryck</li><li>Allt inövat minst 10 ggr innan</li></ul>
+    </div>
+  </div>
+  <h3>Vardag under uppbyggnad</h3>
+  <div class="fuel">
+    <div class="f">
+      <span class="dur">Dagligen</span>
+      <h4>Grundprinciper</h4>
+      <ul><li>Protein: ~1,6–2 g/kg = 120–145 g/dag</li><li>Ät dig mätt — inget aktivt underskott under volymökning</li><li>Kolhydrat före/efter kvalitetspass, inte minimerat</li></ul>
+    </div>
+    <div class="f">
+      <span class="dur">Efter pass</span>
+      <h4>Återhämtning</h4>
+      <ul><li>Inom 60 min efter långpass: kolhydrat + protein (t.ex. fil + müsli + ägg, eller mjölk + smörgåsar)</li><li>Långpass i värme: salta maten</li></ul>
+    </div>
+    <div class="f">
+      <span class="dur">Kontroll</span>
+      <h4>Vikt & energi</h4>
+      <ul><li>Väg 1×/vecka, samma tid — dagligt är brus</li><li>Varningssignaler på för lite mat: dålig sömn, stigande vilopuls, hängig i vardagen</li><li>73 kg är nära racevikt — inget mer behöver forceras</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATALOGG ============ -->
+<section id="logg">
+  <div class="eyebrow">Uppdateras vid varje datauppladdning</div>
+  <h2>Datalogg</h2>
+  <div class="log">
+    <div class="entry">
+      <span class="d">2026-07-10 · API-synk via strava_sync.py (19 pass, 10 jun–9 jul)</span>
+      <h4>Pipeline verifierad — och första bandveckan godkänd</h4>
+      <p>Nytt arbetsflöde i drift: eget API-skript → JSON → analys. Data korsvaliderad mot GPX, allt stämmer. Veckans pass med H10: löpning 8 jul (5,3 km, snitt 137, 88 % Z2 — perfekt) och cykel 9 jul (20 km, snitt 135, 86 % Z1+Z2, slutspurt till 176 noterad och avrådd). Loopserien visar vändningen: 156,7 → 142,0 → 155,8 → 132,7 → 134,7 i snittpuls, med bara 1–2 km/h fartförlust. Ny baslinje: 26,8 km/h @ 135. Flaggan "cykelintensitet" släckt; löpgolvet 2 pass/v kvarstår.</p>
+    </div>
+    <div class="entry">
+      <span class="d">2026-07-06 · Strava-import (89 aktiviteter, mar–jul)</span>
+      <h4>Cykelblocket igång — men i fel zon</h4>
+      <p>~100 km på nya cykeln sedan 18 juni. Två av tre 20 km-pass i Z3 (snitt 156–157, max 178); endast 1 juli var korrekt Z2 (142). Löpuppehåll sedan 3 juni — det passet kördes dessutom hårt (10 km @ 6:12/km, snittpuls 168). Beslut: cykelpuls 130–145, löpgolv 2 pass/v, H10 beställd som ny mätbaslinje. Vikt bekräftad 73 kg (sund takt från 77 vid årsskiftet).</p>
+    </div>
+    <div class="entry">
+      <span class="d">2026-05-18 · Apple Hälsa-import + halvmara-rapport</span>
+      <h4>Första halvmaran: aerobt godkänd, strukturellt förhastad</h4>
+      <p>21,19 km på 2:35, snittpuls 147 (äkta Z2 hela vägen), max 178. Utmärkt pulsdisciplin — men +11 km utan progression gav knäsmärta och skavsår, och nutritionen (~12 g kolh/h) var kraftigt underdimensionerad. Slutsats: aerob bas bättre än volymdatan antydde; struktur och mage släpar.</p>
+    </div>
+    <div class="entry">
+      <span class="d">2026-05-08 · Apple Hälsa-grundanalys (527 pass)</span>
+      <h4>Utgångsläge fastställt</h4>
+      <p>Löpning 160 km/17,6 h senaste året · cykling 5,8 h · simning 0. VO₂ max ~43 (ned från ~50 hösten 2024). Vilopuls 49–54, HRV 88 ms, maxpuls 195. Femfasplan lagd mot prel. racedatum 14 aug 2027.</p>
+    </div>
+  </div>
+  <p class="note">Ny Strava-export → ladda upp i chatten → jag analyserar, uppdaterar dashboarden och loggar bedömningen här.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>CW · IRONMAN KALMAR 2027 · TRÄNINGSPROTOKOLL</span>
+    <span>Coach: Claude · uppdaterad 2026-07-10</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var RACE = new Date(2027,7,14); // 14 aug 2027 (prel.)
+  var now = new Date();
+  var msDay = 86400000;
+  var days = Math.max(0, Math.ceil((RACE - now)/msDay));
+  document.getElementById('dagar').textContent = days;
+  document.getElementById('veckor').textContent = Math.floor(days/7);
+
+  // Phase detection + track fill + marker
+  var phases = document.querySelectorAll('#track .ph');
+  var track = document.getElementById('track');
+  var marker = document.getElementById('marker');
+  var currentName = 'Bas 1';
+  var totalFlex = 0, acc = 0, markerFrac = null;
+
+  phases.forEach(function(p){ totalFlex += parseFloat(p.style.flex); });
+
+  phases.forEach(function(p){
+    var s = new Date(p.dataset.start), e = new Date(p.dataset.end);
+    e.setHours(23,59,59);
+    var flex = parseFloat(p.style.flex);
+    var fill = p.querySelector('.fill');
+    if (now > e) {
+      if (fill) fill.style.width = '100%';
+    } else if (now >= s && now <= e) {
+      var frac = (now - s) / (e - s);
+      if (fill) fill.style.width = (frac*100).toFixed(1) + '%';
+      currentName = p.dataset.nm.split('·')[1] ? p.dataset.nm.split('·')[1].trim() : p.dataset.nm;
+      markerFrac = (acc + frac*flex) / totalFlex;
+    }
+    acc += flex;
+  });
+
+  document.getElementById('fasnamn').textContent = currentName;
+  if (markerFrac !== null) {
+    marker.hidden = false;
+    marker.style.left = (markerFrac*100).toFixed(2) + '%';
+  }
+})();
+</script>
+</body>
+</html>
