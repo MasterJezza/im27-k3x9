@@ -121,6 +121,33 @@ tr.now td{background:#FDF0EB!important;border-left:3px solid var(--bib)}
 .log p{font-size:13.5px;color:var(--textsvag);max-width:75ch}
 
 .note{font-family:var(--mono);font-size:12px;color:var(--textsvag);margin-top:14px}
+/* ---------- Tufte-prognos ---------- */
+.forecast-panel{--tufte-bg:#fffff8;--tufte-text:#111;--tufte-secondary:#666;--tufte-rule:#ccc;--tufte-default:#666;background:var(--tufte-bg);border-left:1px solid var(--tufte-rule);border-bottom:1px solid var(--tufte-rule);padding:24px;margin-top:24px;color:var(--tufte-text)}
+.forecast-title{font-family:"ET Book","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;font-size:clamp(22px,3vw,30px);font-weight:400;line-height:1.2;text-transform:none;letter-spacing:0;margin:0 0 6px}
+.forecast-subtitle{font-family:"ET Book","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;color:var(--tufte-secondary);max-width:76ch;margin-bottom:18px}
+.forecast-figure{margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tufte-chart{display:block;width:100%;height:auto;min-width:700px;background:var(--tufte-bg);font-family:"ET Book","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+.tufte-chart .axis-line{stroke:var(--tufte-rule);stroke-width:.7}
+.tufte-chart .tick{font-family:system-ui,-apple-system,sans-serif;font-size:11px;fill:var(--tufte-secondary)}
+.tufte-chart .direct-label{font-size:14px;fill:var(--tufte-text)}
+.tufte-chart .value-label{font-size:13px;font-weight:600;fill:var(--tufte-text)}
+.tufte-chart .segment-label{fill:#111}
+.tufte-chart .annotation{font-size:12px;font-style:italic;fill:var(--tufte-secondary)}
+.tufte-chart .target-band{fill:#2E6E54;opacity:.09}
+.tufte-chart .target-line{stroke:#2E6E54;stroke-width:1;stroke-dasharray:4 4}
+.tufte-chart .range-line{stroke:var(--tufte-default);stroke-width:2}
+.tufte-chart .range-cap{stroke:var(--tufte-default);stroke-width:1}
+.tufte-chart .estimate-dot{fill:var(--tufte-bg);stroke:var(--tufte-text);stroke-width:2}
+.forecast-caption{font-family:"ET Book","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;color:var(--tufte-secondary);font-size:13px;max-width:78ch;margin:10px 0 18px}
+.forecast-table{font-family:"ET Book","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;font-size:14px;color:var(--tufte-text);border-collapse:collapse;width:100%;background:transparent;border:none}
+.forecast-table caption{text-align:left;font-size:13px;color:var(--tufte-secondary);margin-bottom:8px}
+.forecast-table th{font-family:system-ui,-apple-system,sans-serif;font-weight:500;color:var(--tufte-secondary);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--tufte-secondary);background:transparent;text-align:left}
+.forecast-table td{padding:7px 10px;border:none;background:transparent!important;font-feature-settings:"onum" 1}
+.forecast-table td.num{text-align:right;font-variant-numeric:tabular-nums oldstyle-nums;white-space:nowrap}
+.forecast-table tr.total td{border-top:1px solid var(--tufte-rule);font-weight:600;padding-top:10px}
+.forecast-method{font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--tufte-secondary);margin-top:14px;max-width:92ch}
+.forecast-mobile{display:none}
+@media(prefers-color-scheme:dark){.forecast-panel{--tufte-bg:#151515;--tufte-text:#ddd;--tufte-secondary:#aaa;--tufte-rule:#444;--tufte-default:#999}.tufte-chart .target-band{fill:#76b7b2;opacity:.12}.tufte-chart .target-line{stroke:#76b7b2}}
 footer{background:var(--djup);color:#7FA3B5;padding:28px 0;font-family:var(--mono);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
@@ -128,6 +155,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .track .ph .nm{font-size:8.5px}
   .marker::after{display:none}
   section{padding:40px 0}
+  .forecast-panel{padding:18px 14px}
+  .forecast-figure{display:none}
+  .forecast-mobile{display:block;margin:18px 0}
+  .forecast-mobile .mobile-total{font-family:"ET Book","Palatino Linotype",Palatino,Georgia,serif;font-size:28px;margin-bottom:8px}
+  .forecast-mobile .mobile-target{font-family:var(--mono);font-size:11px;color:var(--tufte-secondary);margin-bottom:14px}
+  .forecast-mobile .mobile-stack{display:flex;height:42px;margin-bottom:16px}
+  .forecast-mobile .mobile-stack span{display:flex;align-items:center;justify-content:center;color:#111;font-family:var(--mono);font-size:10px;font-weight:600;overflow:hidden}
+  .forecast-mobile .mobile-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:8px 0;border-top:1px solid var(--tufte-rule);font-family:"ET Book","Palatino Linotype",Palatino,Georgia,serif}
+  .forecast-mobile .mobile-row small{grid-column:1/-1;color:var(--tufte-secondary)}
+  .forecast-table{font-size:12px}
+  .forecast-table th,.forecast-table td{padding:7px 5px}
+  .forecast-table th:nth-child(2),.forecast-table td:nth-child(2){display:none}
 }
 </style>
 </head>
@@ -137,6 +176,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <span class="brand">CW·IM27</span>
     <a href="#laget">Läget</a>
+    <a href="#prognos">Prognos</a>
     <a href="#baslinjer">Baslinjer</a>
     <a href="#vecka">Veckoschema</a>
     <a href="#faser">Faser</a>
@@ -178,7 +218,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 <!-- ============ LÄGET NU ============ -->
 <section id="laget">
-  <div class="eyebrow">Uppdaterad 31 augusti 2026 · efter API-synk (24 exporterade aktiviteter)</div>
+  <div class="eyebrow">Uppdaterad 31 augusti 2026 · Strava + Apple Health</div>
   <h2>Läget nu</h2>
   <p class="lede">Coachens aktuella bedömning. Grönt = fortsätt. Gult = justera. Orange = åtgärd krävs innan nästa datauppladdning.</p>
   <h3>&nbsp;</h3>
@@ -187,6 +227,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <span class="tag">Genombrott</span>
       <h4>Första riktiga triathlonveckan</h4>
       <p>Veckan innehöll simning, två löppass och två cykelpass: <b>4:08 strukturerad träning</b> exklusive promenad. Kontinuiteten är ett tydligt steg framåt. Ärlig bokföring: detta var en stark strukturvecka, inte ännu en full volymvecka mot målet 8–9 timmar.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Trend</span>
+      <h4>VO₂ max upp till 46,4</h4>
+      <p>Apple Watch-estimatet den 27 aug var <b>46,37 ml/kg/min</b>; 30-dagarsmedianen är 46,26. Det är cirka 2,0 enheter över medianen i maj och en tydlig positiv trend. Värdet är ett fältestimat, så utvecklingen väger tyngre än en enskild mätning.</p>
     </div>
     <div class="card">
       <span class="tag">OK</span>
@@ -216,18 +261,132 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </section>
 
+<!-- ============ PROGNOS ============ -->
+<section id="prognos">
+  <div class="eyebrow">Prognos v0.1 · träningsdata t.o.m. 30 aug · hälsodata t.o.m. 31 aug 2026</div>
+  <h2>Prognos</h2>
+  <div class="forecast-panel">
+    <h3 class="forecast-title">Nuvarande prognos är 13:10 — simningen driver osäkerheten</h3>
+    <p class="forecast-subtitle">Förväntad raceday-tid den 21 augusti 2027, givet kontinuerlig träning, simcoach och successiv tillvänjning i aero-position. Punkt = central prognos; linje = rimligt scenariointervall.</p>
+
+    <figure class="forecast-figure">
+      <svg class="tufte-chart" viewBox="0 0 900 580" role="img" aria-labelledby="forecast-svg-title forecast-svg-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="forecast-svg-title">Projicerad Ironman-tid 13 timmar och 10 minuter</title>
+        <desc id="forecast-svg-desc">Prognosen består av simning 1 timme 35 minuter, växlingar 15 minuter, cykling 6 timmar 20 minuter och löpning 5 timmar. Totalens scenariointervall är 12 timmar 22 minuter till 14 timmar 40 minuter. Målintervallet är 11 timmar 30 minuter till 12 timmar 30 minuter.</desc>
+
+        <rect class="target-band" x="642" y="58" width="48" height="150"/>
+        <line class="target-line" x1="690" y1="52" x2="690" y2="214"/>
+        <text class="annotation" x="666" y="43" text-anchor="middle">mål 11:30–12:30</text>
+
+        <rect x="90" y="92" width="76" height="64" fill="#76b7b2"/>
+        <rect x="166" y="92" width="12" height="64" fill="#b8b8b8"/>
+        <rect x="178" y="92" width="304" height="64" fill="#f28e2b"/>
+        <rect x="482" y="92" width="240" height="64" fill="#e15759"/>
+        <text class="value-label segment-label" x="128" y="119" text-anchor="middle">Sim</text>
+        <text class="direct-label segment-label" x="128" y="140" text-anchor="middle">1:35</text>
+        <line class="axis-line" x1="172" y1="90" x2="172" y2="70"/>
+        <text class="annotation" x="172" y="62" text-anchor="middle">T1+T2 · 0:15</text>
+        <text class="value-label segment-label" x="330" y="119" text-anchor="middle">Cykel</text>
+        <text class="direct-label segment-label" x="330" y="140" text-anchor="middle">6:20</text>
+        <text class="value-label segment-label" x="602" y="119" text-anchor="middle">Löp</text>
+        <text class="direct-label segment-label" x="602" y="140" text-anchor="middle">5:00</text>
+        <text class="value-label" x="730" y="84">13:10</text>
+
+        <line class="range-line" x1="684" y1="195" x2="794" y2="195"/>
+        <line class="range-cap" x1="684" y1="188" x2="684" y2="202"/>
+        <line class="range-cap" x1="794" y1="188" x2="794" y2="202"/>
+        <circle class="estimate-dot" cx="722" cy="195" r="5"/>
+        <text class="annotation" x="739" y="220" text-anchor="middle">totalintervall 12:22–14:40</text>
+
+        <line class="axis-line" x1="90" y1="253" x2="810" y2="253"/>
+        <g class="tick"><line class="axis-line" x1="90" y1="253" x2="90" y2="258"/><text x="90" y="274" text-anchor="middle">0 h</text></g>
+        <g class="tick"><line class="axis-line" x1="234" y1="253" x2="234" y2="258"/><text x="234" y="274" text-anchor="middle">3 h</text></g>
+        <g class="tick"><line class="axis-line" x1="378" y1="253" x2="378" y2="258"/><text x="378" y="274" text-anchor="middle">6 h</text></g>
+        <g class="tick"><line class="axis-line" x1="522" y1="253" x2="522" y2="258"/><text x="522" y="274" text-anchor="middle">9 h</text></g>
+        <g class="tick"><line class="axis-line" x1="666" y1="253" x2="666" y2="258"/><text x="666" y="274" text-anchor="middle">12 h</text></g>
+        <g class="tick"><line class="axis-line" x1="810" y1="253" x2="810" y2="258"/><text x="810" y="274" text-anchor="middle">15 h</text></g>
+
+        <text class="direct-label" x="90" y="314">Osäkerheten per segment</text>
+
+        <text class="direct-label" x="90" y="350">Simning</text>
+        <line x1="308" y1="345" x2="360" y2="345" stroke="#76b7b2" stroke-width="4"/>
+        <line class="range-cap" x1="308" y1="339" x2="308" y2="351"/>
+        <line class="range-cap" x1="360" y1="339" x2="360" y2="351"/>
+        <circle class="estimate-dot" cx="323" cy="345" r="5"/>
+        <text class="value-label" x="323" y="330" text-anchor="middle">1:35</text>
+
+        <text class="direct-label" x="90" y="400">Cykling</text>
+        <line x1="728" y1="395" x2="788" y2="395" stroke="#f28e2b" stroke-width="4"/>
+        <line class="range-cap" x1="728" y1="389" x2="728" y2="401"/>
+        <line class="range-cap" x1="788" y1="389" x2="788" y2="401"/>
+        <circle class="estimate-dot" cx="750" cy="395" r="5"/>
+        <text class="value-label" x="750" y="380" text-anchor="middle">6:20</text>
+
+        <text class="direct-label" x="90" y="450">Löpning</text>
+        <line x1="600" y1="445" x2="683" y2="445" stroke="#e15759" stroke-width="4"/>
+        <line class="range-cap" x1="600" y1="439" x2="600" y2="451"/>
+        <line class="range-cap" x1="683" y1="439" x2="683" y2="451"/>
+        <circle class="estimate-dot" cx="630" cy="445" r="5"/>
+        <text class="value-label" x="630" y="430" text-anchor="middle">5:00</text>
+
+        <text class="direct-label" x="90" y="500">Växlingar</text>
+        <line x1="198" y1="495" x2="210" y2="495" stroke="#999" stroke-width="4"/>
+        <line class="range-cap" x1="198" y1="489" x2="198" y2="501"/>
+        <line class="range-cap" x1="210" y1="489" x2="210" y2="501"/>
+        <circle class="estimate-dot" cx="203" cy="495" r="5"/>
+        <text class="value-label" x="219" y="500">0:15</text>
+
+        <line class="axis-line" x1="180" y1="535" x2="810" y2="535"/>
+        <g class="tick"><line class="axis-line" x1="180" y1="535" x2="180" y2="540"/><text x="180" y="556" text-anchor="middle">0 h</text></g>
+        <g class="tick"><line class="axis-line" x1="360" y1="535" x2="360" y2="540"/><text x="360" y="556" text-anchor="middle">2 h</text></g>
+        <g class="tick"><line class="axis-line" x1="540" y1="535" x2="540" y2="540"/><text x="540" y="556" text-anchor="middle">4 h</text></g>
+        <g class="tick"><line class="axis-line" x1="720" y1="535" x2="720" y2="540"/><text x="720" y="556" text-anchor="middle">6 h</text></g>
+        <g class="tick"><line class="axis-line" x1="810" y1="535" x2="810" y2="540"/><text x="810" y="556" text-anchor="middle">7 h</text></g>
+      </svg>
+      <figcaption class="forecast-caption">Den centrala prognosen ligger 40 minuter över målbandets övre gräns. Prognosens snabbaste rimliga scenario överlappar målet; den största enskilda osäkerheten är simningen.</figcaption>
+    </figure>
+
+    <div class="forecast-mobile" aria-label="Projicerad Ironman-tid 13 timmar och 10 minuter. Simning 1 timme 35 minuter, cykling 6 timmar 20 minuter, löpning 5 timmar och växlingar 15 minuter.">
+      <div class="mobile-total">13:10 <small>projicerad sluttid</small></div>
+      <div class="mobile-target">Intervall 12:22–14:40 · mål 11:30–12:30</div>
+      <div class="mobile-stack" aria-hidden="true">
+        <span style="width:12%;background:#76b7b2">Sim</span><span style="width:2%;background:#b8b8b8"></span><span style="width:48%;background:#f28e2b">Cykel</span><span style="width:38%;background:#e15759">Löp</span>
+      </div>
+      <div class="mobile-row"><span>Simning</span><b>1:35</b><small>Rimligt intervall 1:25–2:00</small></div>
+      <div class="mobile-row"><span>Cykling</span><b>6:20</b><small>Rimligt intervall 6:05–6:45</small></div>
+      <div class="mobile-row"><span>Löpning</span><b>5:00</b><small>Rimligt intervall 4:40–5:35</small></div>
+      <div class="mobile-row"><span>Växlingar</span><b>0:15</b><small>Rimligt intervall 0:12–0:20</small></div>
+    </div>
+
+    <table class="forecast-table">
+      <caption>Datagrund och osäkerhet bakom prognosen</caption>
+      <thead><tr><th>Segment</th><th>Senaste evidens</th><th style="text-align:right">Prognos</th><th style="text-align:right">Intervall</th><th>Konfidens</th></tr></thead>
+      <tbody>
+        <tr><td>Simning</td><td>800 m / 30 min · första bassängpasset</td><td class="num">1:35</td><td class="num">1:25–2:00</td><td>Låg</td></tr>
+        <tr><td>Cykling</td><td>≈28 km/h @ 140 på kontrollslinga · aero ny</td><td class="num">6:20</td><td class="num">6:05–6:45</td><td>Medel</td></tr>
+        <tr><td>Löpning</td><td>7:18–7:20/km @ 139–143 på senaste Z2-passen</td><td class="num">5:00</td><td class="num">4:40–5:35</td><td>Medel–låg</td></tr>
+        <tr><td>Växlingar</td><td>Planeringsantagande; ingen tävlingsdata ännu</td><td class="num">0:15</td><td class="num">0:12–0:20</td><td>Låg</td></tr>
+        <tr class="total"><td>Total</td><td>Summan av segmenten</td><td class="num">13:10</td><td class="num">12:22–14:40</td><td>Preliminär</td></tr>
+      </tbody>
+    </table>
+    <p class="forecast-method">METOD V0.1 · Raceday-prognos, inte ”om loppet vore idag”. Förutsätter kontinuerlig träning fram till 21 aug 2027, simcoach, skadefri progression, fungerande nutrition och gradvis aero-tillvänjning. Intervallen är coachscenarier, inte statistiska konfidensintervall. Söndagens 28,8 km/h @ 150 används inte som hållbar Ironman-fart. Prognosen omkalibreras vid varje datasynk när längre sammanhängande pass ger bättre evidens.</p>
+  </div>
+</section>
+
 <!-- ============ BASLINJER ============ -->
 <section id="baslinjer">
   <div class="eyebrow">Fysiologi · zoner · utrustning</div>
   <h2>Baslinjer</h2>
 
   <div class="stats">
-    <div class="stat"><b>73<span style="font-size:14px"> kg</span></b><span>Vikt (175 cm)</span><small>▼ från 77 vid årsskiftet</small></div>
-    <div class="stat"><b>~43</b><span>VO₂ max</span><small>Mål race: 50–55</small></div>
-    <div class="stat"><b>49–54</b><span>Vilopuls</span><small>Stabil baslinje</small></div>
-    <div class="stat"><b>~88<span style="font-size:14px"> ms</span></b><span>HRV (SDNN)</span><small>God marginal</small></div>
+    <div class="stat"><b>73<span style="font-size:14px"> kg</span></b><span>Vikt (175 cm)</span><small>Senast registrerad 20 jul</small></div>
+    <div class="stat"><b>46,4</b><span>VO₂ max</span><small>30 d median 46,3 · mål 50–55</small></div>
+    <div class="stat"><b>51<span style="font-size:14px"> bpm</span></b><span>Vilopuls</span><small>7 d median · spann 48–55</small></div>
+    <div class="stat"><b>83<span style="font-size:14px"> ms</span></b><span>HRV (SDNN)</span><small>30 d median av dagsmedianer</small></div>
     <div class="stat"><b>195</b><span>Maxpuls</span><small>Observerad</small></div>
+    <div class="stat"><b>40,8<span style="font-size:14px"> bpm</span></b><span>Pulsfall efter 1 min</span><small>Senast 27 aug · 90 d median 34,8</small></div>
   </div>
+  <p class="note">Apple Health-export t.o.m. 31 aug. VO₂ max är Apple Watch-estimat från utomhuspass, inte ett laboratorietest. HRV visas som median av dagsmedianer för att minska påverkan från enskilda extremvärden och ojämn provtagning.</p>
 
   <h3>Pulszoner — samma i Bevel, Strava och alla samtal</h3>
   <table>
@@ -371,6 +530,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="eyebrow">Uppdateras vid varje datauppladdning</div>
   <h2>Datalogg</h2>
   <div class="log">
+    <div class="entry">
+      <span class="d">2026-08-31 · Apple Health-synk (export t.o.m. 31 aug)</span>
+      <h4>VO₂-trenden lyfter — återhämtningsmåtten är stabila</h4>
+      <p>Senaste VO₂ max-estimatet var 46,37 den 27 aug; 30-dagarsmedianen är 46,26 och 90-dagarsmedianen 45,68. Medianen i maj var 44,34, vilket ger en förbättring på cirka 2,0 enheter sedan dess; jämfört med april–maj sammantaget är ökningen cirka 3,5. Vilopulsen är 51 både senast och som sjudagarsmedian (spann 48–55); två tillfälligt höga dygn, 70 den 22 aug och 63 den 23 aug, följdes av normalisering. HRV:s dagsviktade 30-dagarsmedian är 83,06 ms och sjudagarsmedianen 89,28 ms. Pulsfallet en minut efter ansträngning var senast 40,75 slag/min jämfört med en 90-dagarsmedian på 34,79. Vikten är fortsatt 73 kg, men har inte registrerats sedan 20 jul. Gångpuls och andningsfrekvens har granskats men utelämnats ur huvudvyn eftersom de inte ändrar den aktuella träningsstyrningen.</p>
+    </div>
     <div class="entry">
       <span class="d">2026-08-31 · API-synk (24 exporterade aktiviteter, 2–30 aug) · första tregrensveckan</span>
       <h4>Simstart och löpdisciplin — men vinden drog långpasset in i Z3</h4>
