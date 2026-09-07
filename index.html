@@ -168,6 +168,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .forecast-table th,.forecast-table td{padding:7px 5px}
   .forecast-table th:nth-child(2),.forecast-table td:nth-child(2){display:none}
 }
+/* Coach cues: readable overview, evidence available on demand. */
+#passfokus{scroll-margin-top:72px}
+.coach-cues{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:24px}
+.coach-cues h3{margin:8px 0 12px;font-size:20px}
+.coach-cues .cue-label{font-family:var(--mono);font-size:12px;color:var(--textsvag)}
+.coach-cues p+p{margin-top:12px}
+.coach-evidence{margin-top:24px;border-top:1px solid var(--linje);padding-top:16px}
+.coach-evidence summary{cursor:pointer;font-weight:600}
+.coach-evidence summary:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+.coach-evidence p{max-width:78ch;margin-top:12px}
+.coach-evidence a{color:inherit;text-underline-offset:3px}
+@media(max-width:700px){.coach-cues{grid-template-columns:1fr;gap:24px}}
 </style>
 </head>
 <body>
@@ -179,6 +191,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     <a href="#prognos">Prognos</a>
     <a href="#baslinjer">Baslinjer</a>
     <a href="#vecka">Veckoschema</a>
+    <a href="#passfokus">Passfokus</a>
     <a href="#faser">Faser</a>
     <a href="#nutrition">Nutrition</a>
     <a href="#logg">Datalogg</a>
@@ -434,6 +447,39 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
     </tbody>
   </table>
   <p class="note">Tempostyret tränas endast på raka, öppna och lugna partier: 3×5–8 min denna vecka. Upp ur aero före kurvor, trafik, växlingar och kastvind. Återhämtningsvecka 7–13 sep: cirka 60 % av genomförd volym.</p>
+</section>
+
+<!-- ============ PASSFOKUS ============ -->
+<section id="passfokus" aria-labelledby="passfokus-title">
+  <div class="eyebrow">Coachens råd · uppdaterat 7 september 2026</div>
+  <h2 id="passfokus-title">Ta med dig ut på passet</h2>
+  <p class="lede">Välj ett fokus åt gången. Råden bygger på passen 31 augusti–6 september och den nya Apple Health-exporten.</p>
+  <div class="coach-cues">
+    <article>
+      <span class="cue-label">LÖPNING · BEHÅLL RYTMEN</span>
+      <h3>Lätta, avslappnade steg</h3>
+      <p>Din snittkadens ligger nära mellan passen: cirka 156–159 steg/min. Behåll en rytm som känns naturlig, med avslappnade axlar och händer.</p>
+      <p><strong>Under passet:</strong> Känn efter då och då om stegen fortfarande känns lätta. Sänk farten om du börjar spänna dig; jaga inte ett visst kadensvärde.</p>
+    </article>
+    <article>
+      <span class="cue-label">LÖPNING · PROVA FÖRSIKTIGT</span>
+      <h3>Lite kortare steg, samma fart</h3>
+      <p>På det snabbare fredagspasset var stegen längre, cirka 90 cm mot 85–86 cm tidigare. Det är inte i sig ett teknikfel.</p>
+      <p><strong>På ett lugnt pass:</strong> Efter uppvärmningen, prova 4 × 1 minut med lite snabbare, kortare steg, ungefär 163–166 steg/min. Spring som vanligt i två minuter mellan. Behåll farten och släpp övningen om den känns obekväm.</p>
+    </article>
+    <article>
+      <span class="cue-label">CYKLING · LUGNA PASS</span>
+      <h3>Låt ansträngningen styra</h3>
+      <p>Söndagens kortare cykelpass hade högre snittpuls än lördagens: 155 mot 144. Kortare betyder alltså inte alltid lättare.</p>
+      <p><strong>I motvind och uppför:</strong> Växla ner och acceptera lägre fart för att hålla passets lugna ansträngning. Stäm av pulsen mot känslan; handledspuls på cykel kan vara osäker.</p>
+    </article>
+  </div>
+  <details class="coach-evidence">
+    <summary>Varför dessa råd? Data, tolkning och källa</summary>
+    <p>Löpkadens i exporten: 157,9 den 31 augusti, 158,8 den 2 september och 155,6 den 4 september. Liknande passmedel visar inte att varje steg är jämnt eller att höger och vänster sida är symmetriska. Den 4 september innehåller stegserien dessutom flera datakällor.</p>
+    <p>Steglängderna är medel av registrerade mätpunkter, inte tidsviktade passmedel. Skillnader i fart, terräng och trötthet kan påverka dem. Råden är försök att utvärdera, inte krav på en idealisk löpstil.</p>
+    <p>En studie av 45 motionslöpare fann att en måttlig kadensökning vid samma fart minskade vissa belastningsmått. Övningen ovan är coachens praktiska anpassning, inte en garanti för skadeförebyggande effekt. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3022995/">Heiderscheit m.fl.: Effects of Step Rate Manipulation on Joint Mechanics during Running</a>.</p>
+  </details>
 </section>
 
 <!-- ============ FASER ============ -->
