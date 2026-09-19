@@ -1,25 +1,32 @@
-#!/bin/bash
-# publish.sh — publicerar senaste dashboarden till GitHub Pages
-set -e
+#!/usr/bin/env bash
+# Publicera den versionshanterade index.html i samma mapp som skriptet.
+set -euo pipefail
 
-DOWNLOADS="$HOME/Downloads"
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$REPO_DIR"
 
-LATEST=$(ls -t "$DOWNLOADS"/index.html "$DOWNLOADS"/ironman-kalmar-dashboard*.html 2>/dev/null | head -1)
-
-if [ -z "$LATEST" ]; then
-  echo "Hittar ingen dashboard-fil i $DOWNLOADS"
-  echo "Ladda ner index.html från Claude först."
+if [[ ! -f index.html ]]; then
+  echo "Saknar index.html i $REPO_DIR" >&2
   exit 1
 fi
 
-echo "Publicerar: $LATEST"
-cp "$LATEST" "$REPO_DIR/index.html"
+if [[ "$(git branch --show-current)" != "main" ]]; then
+  echo "Avbryter: växla till main innan publicering." >&2
+  exit 1
+fi
 
-cd "$REPO_DIR"
-git add index.html
-git commit -m "Dashboard-uppdatering $(date '+%Y-%m-%d %H:%M')"
-git push
+top_date="$(sed -n 's/.*Uppdaterad <time datetime="\([0-9-]*\)".*/\1/p' index.html | head -n 1)"
+footer_date="$(sed -n 's/.*Coach: Codex · uppdaterad <time datetime="\([0-9-]*\)".*/\1/p' index.html | head -n 1)"
+if [[ -z "$top_date" || "$top_date" != "$footer_date" ]]; then
+  echo "Avbryter: uppdateringsdatumen på framsidan och i sidfoten saknas eller skiljer sig." >&2
+  exit 1
+fi
 
-echo ""
-echo "Klart! Sidan uppdateras inom 1-2 minuter."
+if git diff --quiet HEAD -- index.html publish.sh; then
+  echo "Inga nya ändringar att committa. Kontrollerar eventuell väntande push."
+else
+  git commit --only -m "Dashboard-uppdatering $(date '+%Y-%m-%d %H:%M')" -- index.html publish.sh
+fi
+
+git push origin main
+echo "Klart! GitHub Pages uppdateras efter publiceringen."
